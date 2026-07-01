@@ -4,6 +4,8 @@ English | [한국어](./README.ko.md)
 
 Browser UI for [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay). It is a fork of [Telegram-tt](https://github.com/Ajaxy/telegram-tt) / Telegram Web A adapted to talk to a self-hosted relay over Socket.IO instead of connecting to Telegram directly from the browser.
 
+![telegram-web-relay architecture](./docs/architecture.svg)
+
 ## How It Fits
 
 ```
