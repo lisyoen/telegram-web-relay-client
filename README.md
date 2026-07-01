@@ -109,6 +109,12 @@ npm run build:production
 - Build-time environment values are embedded into the browser bundle. Do not put unrelated secrets in `.env`.
 - Deploy the relay with HTTPS and access control before using it outside a trusted network.
 
+## Issue Bot
+
+New issues receive an automated bilingual triage response and the `needs-triage` label. Maintainers can add `ai-candidate` when an issue is suitable for a future AI coding-agent workflow.
+
+See [docs/issue-bot.md](./docs/issue-bot.md).
+
 ## License
 
 This project is licensed under [GPL-3.0-or-later](./LICENSE), inherited from its upstream, Telegram-tt.

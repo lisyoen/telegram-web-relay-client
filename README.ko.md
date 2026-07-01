@@ -109,6 +109,12 @@ npm run build:production
 - 빌드타임 환경 변수는 브라우저 번들에 포함됩니다. `.env`에 관련 없는 secret을 넣지 마십시오.
 - 신뢰 네트워크 밖에서 사용하려면 relay를 HTTPS와 접근 제어 뒤에 배포하십시오.
 
+## 이슈 봇
+
+새 이슈가 열리면 자동으로 한/영 triage 댓글을 남기고 `needs-triage` 라벨을 붙입니다. 관리자는 향후 AI 코딩 에이전트가 처리하기 좋은 이슈에 `ai-candidate` 라벨을 붙일 수 있습니다.
+
+[docs/issue-bot.md](./docs/issue-bot.md)를 참조하십시오.
+
 ## 라이선스
 
 이 프로젝트는 upstream Telegram-tt로부터 상속된 [GPL-3.0-or-later](./LICENSE)로 배포됩니다.
