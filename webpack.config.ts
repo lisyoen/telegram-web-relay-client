@@ -224,6 +224,7 @@ export default function createConfig(
         APP_TITLE,
         TELEGRAM_API_ID: undefined,
         TELEGRAM_API_HASH: undefined,
+        SOCKET_SERVER_URL: 'http://localhost:9087',
         // eslint-disable-next-line no-null/no-null
         TEST_SESSION: null,
         BASE_URL,

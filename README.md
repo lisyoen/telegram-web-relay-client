@@ -2,70 +2,113 @@
 
 English | [한국어](./README.ko.md)
 
-The browser front-end for **[telegram-web-relay](https://github.com/lisyoen/telegram-web-relay)**.
+Browser UI for [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay). It is a fork of [Telegram-tt](https://github.com/Ajaxy/telegram-tt) / Telegram Web A adapted to talk to a self-hosted relay over Socket.IO instead of connecting to Telegram directly from the browser.
 
-This is a fork of [Telegram-tt](https://github.com/Ajaxy/telegram-tt) (Telegram Web A) rewritten so that the UI talks to a self-hosted relay over [Socket.IO](https://socket.io/) instead of connecting to Telegram directly. Use it together with the relay to run a Telegram web client from networks where the public Telegram API endpoints are blocked.
-
-## How it fits together
+## How It Fits
 
 ```
 Browser (this client, GPL-3.0-or-later)
         |
-        |  Socket.IO
+        | HTTP + Socket.IO
         v
-telegram-web-relay (server, MIT)  -->  TDLib  -->  Telegram (MTProto)
+telegram-web-relay (server, MIT)  --TDLib/MTProto-->  Telegram
 ```
 
-The client is built to static assets and served by the relay (the relay points `V2_DIST_PATH` at this project's `dist/` output). All Telegram traffic terminates on the relay host, so the browser only ever speaks to your own server. The client and the relay are **separate processes under separate licenses** and interoperate over the network at arm's length.
+The production build creates static assets in `dist/`. The relay server serves that directory with `V2_DIST_PATH`.
 
-## Requirements
+## Repository Split
 
-- Node.js `^22.6 || ^24` and npm `^10.8 || ^11` (see `package.json` `engines` and `.node-version`).
-- A Telegram **API ID** and **API hash** from [my.telegram.org](https://my.telegram.org).
+| Repository | Role | License |
+| --- | --- | --- |
+| [`telegram-web-relay`](https://github.com/lisyoen/telegram-web-relay) | Node.js TDLib relay server and static host | MIT |
+| `telegram-web-relay-client` | Browser UI derived from Telegram-tt, adapted for Socket.IO relay transport | GPL-3.0-or-later |
 
-## Setup and build
+The two projects are separate processes under separate licenses. They communicate over the network only.
 
-1. Copy the environment file and install dependencies:
-   ```sh
-   cp .env.example .env
-   npm install
-   ```
-2. Obtain an API ID / API hash from [my.telegram.org](https://my.telegram.org) and fill `TELEGRAM_API_ID` / `TELEGRAM_API_HASH` in `.env`.
+## Quickstart
 
-   > The production build embeds these at build time via webpack's `EnvironmentPlugin`. If `TELEGRAM_API_ID` / `TELEGRAM_API_HASH` are not set (in `.env` or the environment) the build fails.
-3. Build the static client:
-   ```sh
-   npm run build:production
-   ```
-   The output is written to `dist/`.
-4. Serve `dist/` from the relay by setting `V2_DIST_PATH` to this project's `dist/` directory (for example `../telegram-web-relay-client/dist`). See the [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay) setup guide.
+### 1. Build the Client
 
-For local UI development without the relay, `npm run dev` starts a webpack dev server.
+```sh
+git clone https://github.com/lisyoen/telegram-web-relay-client.git
+cd telegram-web-relay-client
+cp .env.example .env
+npm install
+npm run build:production
+```
+
+Edit `.env` when your relay is not running on `http://localhost:9087`:
+
+```env
+TELEGRAM_API_ID=123456
+TELEGRAM_API_HASH=your_api_hash
+SOCKET_SERVER_URL=http://localhost:9087
+BASE_URL=https://web.telegram.org/a/
+```
+
+### 2. Serve It from the Relay
+
+```sh
+git clone https://github.com/lisyoen/telegram-web-relay.git
+cd telegram-web-relay
+cp .env.example .env
+```
+
+Set the relay's `V2_DIST_PATH` to this project's `dist/` directory:
+
+```env
+V2_DIST_PATH=../telegram-web-relay-client/dist
+```
+
+Then start the relay:
+
+```sh
+npm install
+npm start
+```
+
+Open the relay URL in a browser and sign in.
+
+## Environment Variables
+
+| Variable | Required | Default | Description |
+| --- | --- | --- | --- |
+| `TELEGRAM_API_ID` | yes | empty | Telegram API ID from my.telegram.org. Kept for Telegram Web compatibility and build-time checks. |
+| `TELEGRAM_API_HASH` | yes | empty | Telegram API hash from my.telegram.org. Kept for Telegram Web compatibility and build-time checks. |
+| `SOCKET_SERVER_URL` | no | `http://localhost:9087` | Relay URL used by the browser bundle. |
+| `BASE_URL` | no | `https://web.telegram.org/a/` | Upstream Telegram Web base URL compatibility value. |
+
+## Development
+
+```sh
+npm install
+npm run dev
+```
+
+For a mocked UI session:
+
+```sh
+npm run dev:mocked
+```
+
+For production assets:
+
+```sh
+npm run build:production
+```
+
+## Security Notes
+
+- This client does not own a Telegram session by itself. The relay server owns the authenticated TDLib session.
+- Build-time environment values are embedded into the browser bundle. Do not put unrelated secrets in `.env`.
+- Deploy the relay with HTTPS and access control before using it outside a trusted network.
 
 ## License
 
 This project is licensed under [GPL-3.0-or-later](./LICENSE), inherited from its upstream, Telegram-tt.
 
-The companion relay server, [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay), is a **separate** project under the MIT license and runs as a separate process; the two communicate over the network only.
+The companion relay server, [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay), is a separate MIT project and runs as a separate process.
 
 ## Credits
 
-This work is a derivative of **[Telegram-tt](https://github.com/Ajaxy/telegram-tt)** by Alexander Zinchuk and contributors, which won first prize at the [Telegram Lightweight Client Contest](https://contest.com/javascript-web-3) and is the official Telegram Web A client. All upstream copyright and license notices are retained in `LICENSE` and in the source.
-
-Telegram-tt and this fork build on, among others:
-
-* [GramJS](https://github.com/gram-js/gramjs) (MIT License)
-* [pako](https://github.com/nodeca/pako) (MIT License)
-* [cryptography](https://github.com/spalt08/cryptography) (Apache License 2.0)
-* [emoji-data](https://github.com/iamcal/emoji-data) (MIT License)
-* [twemoji-parser](https://github.com/twitter/twemoji-parser) (MIT License)
-* [rlottie](https://github.com/Samsung/rlottie) (MIT License)
-* [opus-recorder](https://github.com/chris-rudmin/opus-recorder) (Various Licenses)
-* [qr-code-styling](https://github.com/kozakdenys/qr-code-styling) (MIT License)
-* [mp4box](https://github.com/gpac/mp4box.js) (BSD-3-Clause License)
-* [music-metadata-browser](https://github.com/Borewit/music-metadata-browser) (MIT License)
-* [lowlight](https://github.com/wooorm/lowlight) (MIT License)
-* [idb-keyval](https://github.com/jakearchibald/idb-keyval) (Apache License 2.0)
-* StackBlur by Mario Klingemann
-* [fasttextweb](https://github.com/karmdesai/fastTextWeb)
-* webp-wasm
+This work is a derivative of [Telegram-tt](https://github.com/Ajaxy/telegram-tt) by Alexander Zinchuk and contributors, which won first prize at the [Telegram Lightweight Client Contest](https://contest.com/javascript-web-3) and is the official Telegram Web A client. Upstream copyright and license notices are retained in `LICENSE` and the source tree.
