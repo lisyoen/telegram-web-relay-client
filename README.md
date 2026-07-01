@@ -1,5 +1,9 @@
 # telegram-web-relay-client
 
+[![Release](https://img.shields.io/github/v/release/lisyoen/telegram-web-relay-client?style=flat-square)](https://github.com/lisyoen/telegram-web-relay-client/releases)
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg?style=flat-square)](./LICENSE)
+[![React](https://img.shields.io/badge/react-client-61dafb?style=flat-square&logo=react&logoColor=111827)](https://react.dev/)
+
 English | [한국어](./README.ko.md)
 
 Browser UI for [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay). It is a fork of [Telegram-tt](https://github.com/Ajaxy/telegram-tt) / Telegram Web A adapted to talk to a self-hosted relay over Socket.IO instead of connecting to Telegram directly from the browser.

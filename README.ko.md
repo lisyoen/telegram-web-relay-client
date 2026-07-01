@@ -1,5 +1,9 @@
 # telegram-web-relay-client
 
+[![Release](https://img.shields.io/github/v/release/lisyoen/telegram-web-relay-client?style=flat-square)](https://github.com/lisyoen/telegram-web-relay-client/releases)
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg?style=flat-square)](./LICENSE)
+[![React](https://img.shields.io/badge/react-client-61dafb?style=flat-square&logo=react&logoColor=111827)](https://react.dev/)
+
 [English](./README.md) | 한국어
 
 [telegram-web-relay](https://github.com/lisyoen/telegram-web-relay)의 브라우저 UI입니다. [Telegram-tt](https://github.com/Ajaxy/telegram-tt) / Telegram Web A 포크이며, 브라우저가 텔레그램에 직접 연결하는 대신 self-hosted relay와 Socket.IO로 통신하도록 수정되었습니다.
