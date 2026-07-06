@@ -10,6 +10,12 @@
 
 ![telegram-web-relay 구조](./docs/architecture.svg)
 
+## 스크린샷
+
+![Saved Messages demo, Korean UI](./docs/screenshots/chat.png)
+
+Saved Messages demo, Korean UI.
+
 ## 동작 구조
 
 ```

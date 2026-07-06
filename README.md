@@ -10,6 +10,12 @@ Browser UI for [telegram-web-relay](https://github.com/lisyoen/telegram-web-rela
 
 ![telegram-web-relay architecture](./docs/architecture.svg)
 
+## Screenshots
+
+![Saved Messages demo, Korean UI](./docs/screenshots/chat.png)
+
+Saved Messages demo, Korean UI.
+
 ## How It Fits
 
 ```
