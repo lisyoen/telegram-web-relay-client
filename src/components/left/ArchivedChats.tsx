@@ -90,7 +90,7 @@ const ArchivedChats: FC<OwnProps> = ({
           size="smaller"
           color="translucent"
           onClick={onReset}
-          ariaLabel="Return to chat list"
+          ariaLabel={lang('Back')}
           className={buildClassName(
             lang.isRtl && 'rtl',
             isForumPanelVisible && lang.isRtl && 'right-aligned',

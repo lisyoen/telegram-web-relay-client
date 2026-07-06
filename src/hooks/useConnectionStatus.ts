@@ -46,9 +46,9 @@ export default function useConnectionStatus(
 
   let text: string | undefined;
   if (status === ConnectionStatus.waitingForNetwork) {
-    text = lang('WaitingForNetwork');
+    text = lang('RelayWaitingForNetwork');
   } else if (status === ConnectionStatus.syncing) {
-    text = lang('Updating');
+    text = lang('RelayUpdating');
   }
 
   if (position === 'middleHeader') {
