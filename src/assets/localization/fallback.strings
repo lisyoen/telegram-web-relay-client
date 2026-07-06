@@ -90,6 +90,7 @@
 "ContextArchiveCollapse" = "Collapse";
 "ContextArchiveExpand" = "Expand";
 "ContextArchiveToMenu" = "Move to Main Menu";
+"RelayUpdating" = "Syncing relay updates...";
 "CallMessageVideoIncomingDeclined" = "Declined Video Call";
 "CallMessageVideoOutgoingMissed" = "Canceled Video Call";
 "CallMessageVideoIncomingMissed" = "Missed Video Call";
@@ -1240,6 +1241,7 @@
 "Unarchive" = "Unarchive";
 "Archive" = "Archive";
 "WaitingForNetwork" = "Waiting for network...";
+"RelayWaitingForNetwork" = "Waiting for relay connection...";
 "ScheduleSendWhenOnline" = "Send When Online";
 "ScheduleRepeat" = "Repeat: {value}";
 "ScheduleRepeatNever" = "Never";

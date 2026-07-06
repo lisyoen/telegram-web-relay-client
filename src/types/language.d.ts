@@ -72,6 +72,7 @@ export interface LangPair {
   'ContextArchiveCollapse': undefined;
   'ContextArchiveExpand': undefined;
   'ContextArchiveToMenu': undefined;
+  'RelayUpdating': undefined;
   'CallMessageVideoIncomingDeclined': undefined;
   'CallMessageVideoOutgoingMissed': undefined;
   'CallMessageVideoIncomingMissed': undefined;
@@ -1065,6 +1066,7 @@ export interface LangPair {
   'Unarchive': undefined;
   'Archive': undefined;
   'WaitingForNetwork': undefined;
+  'RelayWaitingForNetwork': undefined;
   'ScheduleSendWhenOnline': undefined;
   'ScheduleRepeatNever': undefined;
   'ScheduleRepeatDaily': undefined;

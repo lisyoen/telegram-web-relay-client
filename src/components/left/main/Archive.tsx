@@ -37,13 +37,6 @@ type OwnProps = {
 };
 
 const PREVIEW_SLICE = 5;
-const ARCHIVE_CUSTOM_PEER: CustomPeer = {
-  isCustomPeer: true,
-  title: 'Archived Chats',
-  avatarIcon: 'archive-filled',
-  customPeerAvatarColor: '#9EAAB5',
-};
-
 const ANIMATION_RESET_DELAY = 200;
 
 const Archive = ({
@@ -61,6 +54,12 @@ const Archive = ({
   const animationLevel = useSelector(selectAnimationLevel);
   const shouldAnimateRef = useRef(animationLevel !== ANIMATION_LEVEL_MIN);
   const lang = useLang();
+  const archiveCustomPeer = useMemo<CustomPeer>(() => ({
+    isCustomPeer: true,
+    title: lang('ArchivedChats'),
+    avatarIcon: 'archive-filled',
+    customPeerAvatarColor: '#9EAAB5',
+  }), [lang]);
 
   useSyncEffect(() => {
     if (animationLevel === ANIMATION_LEVEL_MIN) {
@@ -173,7 +172,7 @@ const Archive = ({
     return (
       <>
         <div className={buildClassName('status', styles.avatarWrapper)}>
-          <Avatar peer={ARCHIVE_CUSTOM_PEER} />
+          <Avatar peer={archiveCustomPeer} />
         </div>
         <div className={buildClassName(styles.info, 'info')}>
           <div className="info-row">
